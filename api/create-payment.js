@@ -1,18 +1,3 @@
-import crypto from 'crypto';
-
-const PLANS = {
-  starter: { label: 'Starter - 10 Job Applications', amount: '50.00' },
-  pro:     { label: 'Pro - 25 Job Applications',     amount: '120.00' },
-};
-
-function buildSignature(data) {
-  const str = Object.entries(data)
-    .filter(([k, v]) => k !== 'signature' && v !== '' && v !== null && v !== undefined)
-    .map(([k, v]) => `${k}=${encodeURIComponent(v).replace(/%20/g, '+')}`)
-    .join('&');
-  return crypto.createHash('md5').update(str).digest('hex');
-}
-
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
@@ -20,6 +5,11 @@ export default async function handler(req, res) {
 
   try {
     const { plan = 'pro', firstName = '', lastName = '', email = '', paymentId = `AFM-${Date.now()}` } = req.body || {};
+
+    const PLANS = {
+      starter: { label: 'Starter - 10 Job Applications', amount: '50.00' },
+      pro:     { label: 'Pro - 25 Job Applications',     amount: '120.00' },
+    };
 
     if (!PLANS[plan]) return res.status(400).json({ error: 'Invalid plan.' });
 
@@ -31,9 +21,9 @@ export default async function handler(req, res) {
 
     const planInfo = PLANS[plan];
 
-    // Fields in exact PayFast required order, merchant_key excluded from signature
-    const sigFields = {
+    const fields = {
       merchant_id:   merchantId,
+      merchant_key:  merchantKey,
       return_url:    `${baseUrl}/payment-success`,
       cancel_url:    `${baseUrl}/payment-cancelled`,
       name_first:    firstName.trim(),
@@ -42,14 +32,6 @@ export default async function handler(req, res) {
       m_payment_id:  paymentId,
       amount:        planInfo.amount,
       item_name:     `ApplyForMe ${planInfo.label}`,
-    };
-
-    const signature = buildSignature(sigFields);
-
-    const fields = {
-      ...sigFields,
-      merchant_key: merchantKey,
-      signature,
     };
 
     return res.status(200).json({

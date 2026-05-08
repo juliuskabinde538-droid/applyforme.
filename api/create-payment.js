@@ -1,9 +1,3 @@
-/**
- * /api/create-payment.js
- * Vercel Serverless Function
- * Builds a signed PayFast payment form submission
- */
-
 import crypto from 'crypto';
 
 const PLANS = {
@@ -11,17 +5,12 @@ const PLANS = {
   pro:     { label: 'Pro — 25 Job Applications',     amount: '120.00' },
 };
 
-function buildSignature(fields, passphrase) {
+function buildSignature(fields) {
   const str = Object.keys(fields)
-    .sort()
-    .map(k => `${k}=${encodeURIComponent(fields[k]).replace(/%20/g, '+')}`)
+    .filter(k => fields[k] !== '' && fields[k] !== null && fields[k] !== undefined)
+    .map(k => `${k}=${encodeURIComponent(String(fields[k])).replace(/%20/g, '+')}`)
     .join('&');
-
-  const toSign = passphrase
-    ? `${str}&passphrase=${encodeURIComponent(passphrase).replace(/%20/g, '+')}`
-    : str;
-
-  return crypto.createHash('md5').update(toSign).digest('hex');
+  return crypto.createHash('md5').update(str).digest('hex');
 }
 
 export default async function handler(req, res) {
@@ -44,17 +33,11 @@ export default async function handler(req, res) {
 
     const merchantId  = process.env.PAYFAST_MERCHANT_ID;
     const merchantKey = process.env.PAYFAST_MERCHANT_KEY;
-    const passphrase  = process.env.PAYFAST_PASSPHRASE || '';
-    const baseUrl     = process.env.BASE_URL || 'https://applyforme.vercel.app';
-    const sandbox     = process.env.PAYFAST_SANDBOX !== 'false';
+    const baseUrl     = process.env.BASE_URL || 'https://applyforme-rho.vercel.app';
 
     if (!merchantId || !merchantKey) {
-      return res.status(500).json({ error: 'Payment service not configured. Please contact support.' });
+      return res.status(500).json({ error: 'Payment service not configured.' });
     }
-
-    const payfastUrl = sandbox
-      ? 'https://sandbox.payfast.co.za/eng/process'
-      : 'https://www.payfast.co.za/eng/process';
 
     const planInfo = PLANS[plan];
 
@@ -69,12 +52,14 @@ export default async function handler(req, res) {
       m_payment_id:     paymentId,
       amount:           planInfo.amount,
       item_name:        `ApplyForMe ${planInfo.label}`,
-      item_description: `AI-powered cover letter and ${plan === 'pro' ? '25' : '10'} job applications`,
     };
 
-    fields.signature = buildSignature(fields, passphrase);
+    fields.signature = buildSignature(fields);
 
-    return res.status(200).json({ payfastUrl, fields });
+    return res.status(200).json({
+      payfastUrl: 'https://www.payfast.co.za/eng/process',
+      fields,
+    });
 
   } catch (err) {
     console.error('[ApplyForMe] create-payment error:', err);

@@ -16,7 +16,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--black);color:var(--white)
 .screen{display:none;min-height:100vh;animation:fadeIn 0.35s ease}
 .screen.active{display:block}
 @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-
+ 
 nav{display:flex;justify-content:space-between;align-items:center;padding:1.2rem 2rem;border-bottom:1px solid rgba(255,255,255,0.08)}
 .logo{font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:800;letter-spacing:-0.02em}
 .logo span{color:var(--green)}
@@ -24,7 +24,7 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:1.2rem
 .nav-btn:hover{background:var(--green-dark)}
 .btn-ghost-sm{background:transparent;color:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.15);padding:0.45rem 1rem;border-radius:6px;font-size:0.85rem;cursor:pointer;transition:all 0.2s}
 .btn-ghost-sm:hover{border-color:rgba(255,255,255,0.4);color:#fff}
-
+ 
 /* HERO */
 .hero{padding:4rem 2rem 3rem;max-width:780px;margin:0 auto;text-align:center}
 .badge{display:inline-flex;align-items:center;gap:6px;background:rgba(26,158,117,0.15);border:1px solid rgba(26,158,117,0.3);color:var(--green-mid);padding:0.35rem 1rem;border-radius:99px;font-size:0.8rem;font-weight:500;margin-bottom:1.5rem}
@@ -38,13 +38,13 @@ h1 .accent{color:var(--green)}
 .btn-ghost{background:transparent;color:rgba(255,255,255,0.7);border:1px solid rgba(255,255,255,0.2);padding:0.85rem 2rem;border-radius:var(--radius-sm);font-family:'DM Sans',sans-serif;font-weight:500;font-size:1rem;cursor:pointer;transition:all 0.2s}
 .btn-ghost:hover{border-color:rgba(255,255,255,0.5);color:#fff}
 .trust-line{font-size:0.82rem;color:rgba(255,255,255,0.35)}
-
+ 
 .stats{display:flex;justify-content:center;gap:0;border-top:1px solid rgba(255,255,255,0.08);border-bottom:1px solid rgba(255,255,255,0.08);margin:0 2rem}
 .stat{flex:1;max-width:200px;padding:1.5rem 1rem;text-align:center;border-right:1px solid rgba(255,255,255,0.08)}
 .stat:last-child{border-right:none}
 .stat-num{font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;color:var(--green)}
 .stat-label{font-size:0.78rem;color:rgba(255,255,255,0.45);margin-top:2px}
-
+ 
 .section{padding:3rem 2rem;max-width:780px;margin:0 auto}
 .section-tag{font-size:0.75rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--green);margin-bottom:0.5rem}
 .section-title{font-family:'Syne',sans-serif;font-size:clamp(1.6rem,4vw,2.2rem);font-weight:800;letter-spacing:-0.02em;margin-bottom:2rem}
@@ -53,7 +53,7 @@ h1 .accent{color:var(--green)}
 .step-num{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:var(--green);opacity:0.5;line-height:1}
 .step-title{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;margin:0.4rem 0 0.3rem}
 .step-desc{font-size:0.85rem;color:rgba(255,255,255,0.5);line-height:1.5}
-
+ 
 .pricing{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .plan{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:var(--radius);padding:1.8rem}
 .plan.featured{background:rgba(26,158,117,0.12);border-color:var(--green)}
@@ -67,17 +67,17 @@ h1 .accent{color:var(--green)}
 .plan-btn{width:100%;background:var(--green);color:#fff;border:none;padding:0.75rem;border-radius:var(--radius-sm);font-family:'Syne',sans-serif;font-weight:700;font-size:0.9rem;cursor:pointer;transition:all 0.2s}
 .plan:not(.featured) .plan-btn{background:transparent;border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.8)}
 .plan-btn:hover{background:var(--green-dark);color:#fff;border-color:var(--green-dark)}
-
+ 
 .guarantee{background:rgba(26,158,117,0.1);border:1px solid rgba(26,158,117,0.25);border-radius:var(--radius);padding:1.5rem 2rem;display:flex;align-items:flex-start;gap:1rem;max-width:780px;margin:0 auto 3rem}
 .guarantee strong{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;display:block;margin-bottom:0.3rem}
 .guarantee p{font-size:0.85rem;color:rgba(255,255,255,0.6);line-height:1.5}
-
+ 
 .testimonials{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .testi{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius);padding:1.3rem}
 .testi-quote{font-size:0.9rem;color:rgba(255,255,255,0.8);line-height:1.55;margin-bottom:0.8rem;font-style:italic}
 .testi-author{font-size:0.78rem;color:var(--green);font-weight:500}
-
-/* SIGNUP */
+ 
+/* SIGNUP FLOW */
 .signup-wrap{max-width:520px;margin:0 auto;padding:2rem}
 .progress-bar{display:flex;gap:6px;margin-bottom:2rem}
 .progress-step{flex:1;height:3px;background:rgba(255,255,255,0.1);border-radius:99px;transition:background 0.3s}
@@ -103,39 +103,56 @@ textarea{min-height:120px;resize:vertical}
 .btn-next{background:var(--green);color:#fff;border:none;padding:0.75rem 2rem;border-radius:var(--radius-sm);font-family:'Syne',sans-serif;font-weight:700;font-size:0.9rem;cursor:pointer;flex:1;transition:all 0.2s}
 .btn-next:hover{background:var(--green-dark)}
 .btn-next:disabled{opacity:0.6;cursor:not-allowed;transform:none}
-
+ 
+/* CV UPLOAD */
+.cv-upload-zone{border:2px dashed rgba(26,158,117,0.4);border-radius:var(--radius);padding:1.5rem;text-align:center;cursor:pointer;transition:all 0.2s;background:rgba(26,158,117,0.04);margin-bottom:1rem;position:relative}
+.cv-upload-zone:hover,.cv-upload-zone.drag-over{border-color:var(--green);background:rgba(26,158,117,0.1)}
+.cv-upload-zone input[type="file"]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.cv-upload-icon{font-size:2rem;margin-bottom:0.5rem}
+.cv-upload-title{font-family:'Syne',sans-serif;font-weight:700;font-size:0.95rem;margin-bottom:0.3rem}
+.cv-upload-sub{font-size:0.78rem;color:rgba(255,255,255,0.4)}
+.cv-file-preview{background:rgba(26,158,117,0.12);border:1px solid rgba(26,158,117,0.3);border-radius:var(--radius-sm);padding:0.8rem 1rem;display:flex;align-items:center;gap:0.8rem;margin-bottom:1rem}
+.cv-file-icon{font-size:1.4rem;flex-shrink:0}
+.cv-file-info{flex:1;min-width:0}
+.cv-file-name{font-size:0.85rem;font-weight:500;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cv-file-size{font-size:0.75rem;color:rgba(255,255,255,0.4);margin-top:2px}
+.cv-remove-btn{background:transparent;border:none;color:rgba(255,255,255,0.4);cursor:pointer;font-size:1.1rem;padding:0.2rem;flex-shrink:0;transition:color 0.2s}
+.cv-remove-btn:hover{color:rgba(255,100,100,0.8)}
+.cv-optional-tag{display:inline-block;background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.4);font-size:0.7rem;padding:2px 8px;border-radius:99px;margin-left:6px;text-transform:none;letter-spacing:0;font-weight:400;vertical-align:middle}
+ 
+/* AI LOADING */
 .ai-loading{text-align:center;padding:2rem 0}
 .spinner{width:36px;height:36px;border:3px solid rgba(26,158,117,0.2);border-top-color:var(--green);border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 1rem}
 @keyframes spin{to{transform:rotate(360deg)}}
 .ai-text{font-size:0.88rem;color:rgba(255,255,255,0.5)}
-
+ 
 .result-card{background:rgba(26,158,117,0.08);border:1px solid rgba(26,158,117,0.25);border-radius:var(--radius);padding:1.5rem;margin-bottom:1rem}
 .result-label{font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--green);margin-bottom:0.8rem;display:flex;justify-content:space-between;align-items:center}
 .copy-btn{font-size:0.75rem;background:rgba(26,158,117,0.2);border:1px solid rgba(26,158,117,0.3);color:var(--green-mid);padding:3px 10px;border-radius:6px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.2s}
 .copy-btn:hover{background:rgba(26,158,117,0.35)}
 .result-text{font-size:0.88rem;line-height:1.65;color:rgba(255,255,255,0.85);white-space:pre-wrap;max-height:280px;overflow-y:auto}
 .success-icon{text-align:center;font-size:2.5rem;margin-bottom:0.5rem}
-
+ 
 .error-box{background:rgba(255,80,80,0.1);border:1px solid rgba(255,80,80,0.3);border-radius:var(--radius-sm);padding:1rem;font-size:0.88rem;color:rgba(255,150,150,0.9);margin-bottom:1rem;display:none}
-
+ 
 /* CHECKOUT */
 .summary-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.06);font-size:0.88rem}
 .summary-row:last-child{border-bottom:none;font-weight:600;font-size:1rem;padding-top:12px}
 .summary-row span:first-child{color:rgba(255,255,255,0.55)}
 .payfast-logo-bar{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:6px;padding:6px 12px;font-size:0.78rem;color:rgba(255,255,255,0.5);margin-bottom:1rem}
 .pay-spinner{width:20px;height:20px;border:2px solid rgba(255,255,255,0.2);border-top-color:#fff;border-radius:50%;animation:spin 0.8s linear infinite;display:inline-block;vertical-align:middle;margin-right:8px}
-
+ 
 /* THANK YOU */
 .thankyou-wrap{max-width:520px;margin:0 auto;padding:4rem 2rem;text-align:center}
 .big-check{font-size:4rem;margin-bottom:1rem}
-
+ 
 /* TOAST */
 .toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%);background:var(--green);color:#fff;padding:0.75rem 1.5rem;border-radius:99px;font-size:0.88rem;font-weight:500;z-index:9999;opacity:0;transition:opacity 0.3s;pointer-events:none;white-space:nowrap}
 .toast.show{opacity:1}
 </style>
 </head>
 <body>
-
+ 
 <!-- LANDING -->
 <div class="screen active" id="s-landing">
   <nav>
@@ -152,25 +169,25 @@ textarea{min-height:120px;resize:vertical}
     </div>
     <div class="trust-line">From R50 · No hidden fees · 10-day guarantee</div>
   </div>
-
+ 
   <div class="stats">
     <div class="stat"><div class="stat-num">2 847</div><div class="stat-label">Jobs applied to</div></div>
     <div class="stat"><div class="stat-num">68%</div><div class="stat-label">Get an interview</div></div>
     <div class="stat"><div class="stat-num">9 days</div><div class="stat-label">Avg. time to offer</div></div>
     <div class="stat"><div class="stat-num">R50</div><div class="stat-label">Starts from</div></div>
   </div>
-
+ 
   <div class="section" id="how">
     <div class="section-tag">How it works</div>
     <div class="section-title">4 steps. Zero stress.</div>
     <div class="steps">
       <div class="step"><div class="step-num">01</div><div class="step-title">Choose your plan</div><div class="step-desc">Pick Starter (10 jobs) or Pro (25 jobs). Pay once — no subscriptions.</div></div>
-      <div class="step"><div class="step-num">02</div><div class="step-title">Tell us what you want</div><div class="step-desc">Share your role, skills and location. Takes 2 minutes.</div></div>
+      <div class="step"><div class="step-num">02</div><div class="step-title">Upload your CV</div><div class="step-desc">Share your CV and tell us what role you want. Takes 2 minutes.</div></div>
       <div class="step"><div class="step-num">03</div><div class="step-title">AI writes cover letters</div><div class="step-desc">Every application gets a custom, tailored cover letter written by AI.</div></div>
       <div class="step"><div class="step-num">04</div><div class="step-title">You get interviews</div><div class="step-desc">Sit back. Recruiters contact you directly. We send you updates by email.</div></div>
     </div>
   </div>
-
+ 
   <div class="section">
     <div class="section-tag">Pricing</div>
     <div class="section-title">Simple, honest pricing.</div>
@@ -201,7 +218,7 @@ textarea{min-height:120px;resize:vertical}
       </div>
     </div>
   </div>
-
+ 
   <div class="guarantee">
     <div style="font-size:1.8rem;flex-shrink:0">🛡️</div>
     <div>
@@ -209,7 +226,7 @@ textarea{min-height:120px;resize:vertical}
       <p>If you don't receive at least one interview request within 10 business days, we'll re-apply to a new batch of jobs — completely free.</p>
     </div>
   </div>
-
+ 
   <div class="section">
     <div class="section-tag">What people say</div>
     <div class="section-title">Real results from real people.</div>
@@ -220,18 +237,19 @@ textarea{min-height:120px;resize:vertical}
       <div class="testi"><div class="testi-quote">"The cover letters were better than anything I could write. 100% recommend."</div><div class="testi-author">Zanele N. — Cape Town</div></div>
     </div>
   </div>
-
+ 
   <div style="text-align:center;padding:2rem 2rem 4rem">
     <button class="btn-primary" style="font-size:1.05rem;padding:1rem 2.5rem" onclick="goto('s-signup')">Start getting interviews →</button>
   </div>
 </div>
-
+ 
 <!-- STEP 1: PLAN -->
 <div class="screen" id="s-signup">
   <nav><div class="logo">Apply<span>ForMe</span></div><button class="btn-ghost-sm" onclick="goto('s-landing')">← Back</button></nav>
   <div class="signup-wrap">
     <div class="progress-bar">
       <div class="progress-step done"></div>
+      <div class="progress-step"></div>
       <div class="progress-step"></div>
       <div class="progress-step"></div>
       <div class="progress-step"></div>
@@ -257,7 +275,7 @@ textarea{min-height:120px;resize:vertical}
     </div>
   </div>
 </div>
-
+ 
 <!-- STEP 2: DETAILS -->
 <div class="screen" id="s-step2">
   <nav><div class="logo">Apply<span>ForMe</span></div></nav>
@@ -265,6 +283,7 @@ textarea{min-height:120px;resize:vertical}
     <div class="progress-bar">
       <div class="progress-step done"></div>
       <div class="progress-step done"></div>
+      <div class="progress-step"></div>
       <div class="progress-step"></div>
       <div class="progress-step"></div>
     </div>
@@ -296,12 +315,58 @@ textarea{min-height:120px;resize:vertical}
     </div>
   </div>
 </div>
-
-<!-- STEP 3: JOB PREFS -->
+ 
+<!-- STEP 3: CV UPLOAD -->
 <div class="screen" id="s-step3">
   <nav><div class="logo">Apply<span>ForMe</span></div></nav>
   <div class="signup-wrap">
     <div class="progress-bar">
+      <div class="progress-step done"></div>
+      <div class="progress-step done"></div>
+      <div class="progress-step done"></div>
+      <div class="progress-step"></div>
+      <div class="progress-step"></div>
+    </div>
+    <div class="flow-card">
+      <div class="flow-title">Upload your CV</div>
+      <div class="flow-sub">We use your CV to write better, more personalised cover letters</div>
+ 
+      <!-- CV Upload Zone -->
+      <div id="cv-upload-zone" class="cv-upload-zone" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event)">
+        <input type="file" id="cv-file-input" accept=".pdf,.doc,.docx" onchange="handleFileSelect(event)">
+        <div class="cv-upload-icon">📄</div>
+        <div class="cv-upload-title">Drop your CV here or click to browse</div>
+        <div class="cv-upload-sub">PDF, DOC or DOCX · Max 5MB</div>
+      </div>
+ 
+      <!-- File preview (hidden until file selected) -->
+      <div id="cv-file-preview" class="cv-file-preview" style="display:none">
+        <div class="cv-file-icon">📎</div>
+        <div class="cv-file-info">
+          <div class="cv-file-name" id="cv-file-name">filename.pdf</div>
+          <div class="cv-file-size" id="cv-file-size">0 KB</div>
+        </div>
+        <button class="cv-remove-btn" onclick="removeCV()" title="Remove file">✕</button>
+      </div>
+ 
+      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius-sm);padding:0.9rem 1rem;font-size:0.82rem;color:rgba(255,255,255,0.5);line-height:1.5;margin-bottom:1rem">
+        💡 <strong style="color:rgba(255,255,255,0.7)">No CV yet?</strong> No problem — you can skip this step and we'll use the skills and background you describe on the next page instead.
+      </div>
+ 
+      <div class="flow-actions">
+        <button class="btn-back" onclick="goto('s-step2')">← Back</button>
+        <button class="btn-next" onclick="goto('s-step4')">Continue →</button>
+      </div>
+    </div>
+  </div>
+</div>
+ 
+<!-- STEP 4: JOB PREFS -->
+<div class="screen" id="s-step4">
+  <nav><div class="logo">Apply<span>ForMe</span></div></nav>
+  <div class="signup-wrap">
+    <div class="progress-bar">
+      <div class="progress-step done"></div>
       <div class="progress-step done"></div>
       <div class="progress-step done"></div>
       <div class="progress-step done"></div>
@@ -333,21 +398,22 @@ textarea{min-height:120px;resize:vertical}
         <option>5–9 years</option>
         <option>10+ years</option>
       </select>
-      <label>Key Skills & Background *</label>
+      <label>Key Skills & Background *<span id="cv-hint-tag" class="cv-optional-tag" style="display:none">✓ CV uploaded — add any extra details</span></label>
       <textarea id="inp-skills" placeholder="e.g. Excel, data analysis, team leadership, 3 years at Absa...&#10;&#10;The more detail you give, the better your cover letters will be."></textarea>
       <div class="flow-actions">
-        <button class="btn-back" onclick="goto('s-step2')">← Back</button>
-        <button class="btn-next" id="btn-generate" onclick="validateStep3()">Generate My Cover Letter →</button>
+        <button class="btn-back" onclick="goto('s-step3')">← Back</button>
+        <button class="btn-next" id="btn-generate" onclick="validateStep4()">Generate My Cover Letter →</button>
       </div>
     </div>
   </div>
 </div>
-
-<!-- STEP 4: AI COVER LETTER -->
+ 
+<!-- STEP 5: AI COVER LETTER -->
 <div class="screen" id="s-result">
   <nav><div class="logo">Apply<span>ForMe</span></div></nav>
   <div class="signup-wrap">
     <div class="progress-bar">
+      <div class="progress-step done"></div>
       <div class="progress-step done"></div>
       <div class="progress-step done"></div>
       <div class="progress-step done"></div>
@@ -384,7 +450,7 @@ textarea{min-height:120px;resize:vertical}
     </div>
   </div>
 </div>
-
+ 
 <!-- CHECKOUT -->
 <div class="screen" id="s-checkout">
   <nav><div class="logo">Apply<span>ForMe</span></div><button class="btn-ghost-sm" onclick="goto('s-result')">← Back</button></nav>
@@ -392,7 +458,7 @@ textarea{min-height:120px;resize:vertical}
     <div class="flow-card">
       <div class="flow-title">Complete your order</div>
       <div class="flow-sub" id="checkout-sub">Pro Plan — R120 once-off</div>
-
+ 
       <div id="order-summary" style="margin-bottom:1.5rem">
         <div class="summary-row"><span>Plan</span><span id="sum-plan">Pro</span></div>
         <div class="summary-row"><span>Applications</span><span id="sum-apps">25 job applications</span></div>
@@ -401,12 +467,12 @@ textarea{min-height:120px;resize:vertical}
         <div class="summary-row"><span>10-day guarantee</span><span>Included ✓</span></div>
         <div class="summary-row"><span>Total</span><span id="sum-total" style="color:var(--green)">R120.00</span></div>
       </div>
-
+ 
       <div class="payfast-logo-bar">🔒 Secure payment via PayFast — SA's #1 payment gateway</div>
       <p style="font-size:0.8rem;color:rgba(255,255,255,0.35);margin-bottom:1rem">EFT · Credit/Debit Card · Instant EFT · Mobicred</p>
-
+ 
       <div id="pay-error" class="error-box"></div>
-
+ 
       <button class="btn-next" style="width:100%;font-size:1rem;padding:0.9rem" id="pay-btn" onclick="submitPayFast()">
         Pay <span id="pay-amount">R120</span> with PayFast →
       </button>
@@ -414,7 +480,7 @@ textarea{min-height:120px;resize:vertical}
     </div>
   </div>
 </div>
-
+ 
 <!-- THANK YOU -->
 <div class="screen" id="s-thankyou">
   <nav><div class="logo">Apply<span>ForMe</span></div></nav>
@@ -435,7 +501,7 @@ textarea{min-height:120px;resize:vertical}
     <button class="btn-primary" onclick="goto('s-landing')">Back to Home</button>
   </div>
 </div>
-
+ 
 <!-- CANCELLED -->
 <div class="screen" id="s-cancelled">
   <nav><div class="logo">Apply<span>ForMe</span></div></nav>
@@ -446,11 +512,11 @@ textarea{min-height:120px;resize:vertical}
     <button class="btn-primary" onclick="goto('s-checkout')">Try Again →</button>
   </div>
 </div>
-
+ 
 <!-- Toast -->
 <div class="toast" id="toast"></div>
-
-<!-- Hidden PayFast form — populated by /api/create-payment -->
+ 
+<!-- Hidden PayFast form — FIXED: only fields that are signed -->
 <form id="pf-form" method="POST" style="display:none">
   <input type="hidden" name="merchant_id"   id="pf-merchant-id">
   <input type="hidden" name="merchant_key"  id="pf-merchant-key">
@@ -464,31 +530,32 @@ textarea{min-height:120px;resize:vertical}
   <input type="hidden" name="item_name"     id="pf-item-name">
   <input type="hidden" name="signature"     id="pf-signature">
 </form>
-
+ 
 <script>
 'use strict';
-
+ 
 // ── STATE ──────────────────────────────────────────────────────────────────
 const state = {
   plan: 'pro',
   first: '', last: '', email: '', phone: '', city: '',
   role: '', industry: '', experience: '', skills: '',
-  coverLetter: '', paymentId: ''
+  coverLetter: '', paymentId: '',
+  cvFile: null, cvFileName: '', cvFileSize: 0
 };
-
+ 
 // ── NAVIGATION ─────────────────────────────────────────────────────────────
 function goto(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   window.scrollTo(0, 0);
 }
-
+ 
 function selectPlan(p) {
   state.plan = p;
   document.getElementById('opt-starter').classList.toggle('selected', p === 'starter');
   document.getElementById('opt-pro').classList.toggle('selected', p === 'pro');
 }
-
+ 
 // ── TOAST ──────────────────────────────────────────────────────────────────
 function showToast(msg, duration = 3500) {
   const t = document.getElementById('toast');
@@ -497,17 +564,78 @@ function showToast(msg, duration = 3500) {
   clearTimeout(showToast._t);
   showToast._t = setTimeout(() => t.classList.remove('show'), duration);
 }
-
+ 
+// ── CV UPLOAD ──────────────────────────────────────────────────────────────
+function handleDragOver(e) {
+  e.preventDefault();
+  document.getElementById('cv-upload-zone').classList.add('drag-over');
+}
+function handleDragLeave(e) {
+  document.getElementById('cv-upload-zone').classList.remove('drag-over');
+}
+function handleDrop(e) {
+  e.preventDefault();
+  document.getElementById('cv-upload-zone').classList.remove('drag-over');
+  const file = e.dataTransfer.files[0];
+  if (file) processCV(file);
+}
+function handleFileSelect(e) {
+  const file = e.target.files[0];
+  if (file) processCV(file);
+}
+function processCV(file) {
+  const allowedTypes = ['application/pdf','application/msword','application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+  const ext = file.name.split('.').pop().toLowerCase();
+  const allowedExts = ['pdf','doc','docx'];
+ 
+  if (!allowedExts.includes(ext) && !allowedTypes.includes(file.type)) {
+    showToast('Please upload a PDF, DOC, or DOCX file.');
+    return;
+  }
+  if (file.size > 5 * 1024 * 1024) {
+    showToast('File too large. Maximum size is 5MB.');
+    return;
+  }
+ 
+  state.cvFile = file;
+  state.cvFileName = file.name;
+  state.cvFileSize = file.size;
+ 
+  // Show preview
+  document.getElementById('cv-file-name').textContent = file.name;
+  document.getElementById('cv-file-size').textContent = formatFileSize(file.size);
+  document.getElementById('cv-file-preview').style.display = 'flex';
+  document.getElementById('cv-upload-zone').style.display = 'none';
+ 
+  // Show hint on next step
+  document.getElementById('cv-hint-tag').style.display = 'inline';
+  showToast('✓ CV uploaded successfully!');
+}
+function removeCV() {
+  state.cvFile = null;
+  state.cvFileName = '';
+  state.cvFileSize = 0;
+  document.getElementById('cv-file-preview').style.display = 'none';
+  document.getElementById('cv-upload-zone').style.display = 'block';
+  document.getElementById('cv-file-input').value = '';
+  document.getElementById('cv-hint-tag').style.display = 'none';
+}
+function formatFileSize(bytes) {
+  if (bytes < 1024) return bytes + ' B';
+  if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+  return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+}
+ 
 // ── VALIDATION ─────────────────────────────────────────────────────────────
 function validateStep2() {
   const first = document.getElementById('inp-first').value.trim();
   const email = document.getElementById('inp-email').value.trim();
   const city  = document.getElementById('inp-city').value;
-
+ 
   if (!first) { showToast('Please enter your first name.'); return; }
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showToast('Please enter a valid email address.'); return; }
   if (!city)  { showToast('Please select your city.'); return; }
-
+ 
   state.first = first;
   state.last  = document.getElementById('inp-last').value.trim();
   state.email = email;
@@ -515,24 +643,29 @@ function validateStep2() {
   state.city  = city;
   goto('s-step3');
 }
-
-function validateStep3() {
+ 
+function validateStep4() {
   const role   = document.getElementById('inp-role').value.trim();
   const skills = document.getElementById('inp-skills').value.trim();
-
-  if (!role)             { showToast('Please enter the type of role you want.'); return; }
-  if (skills.length < 20){ showToast('Please add a bit more about your background.'); return; }
-
+ 
+  if (!role) { showToast('Please enter the type of role you want.'); return; }
+ 
+  // If no CV uploaded, require skills description
+  if (!state.cvFile && skills.length < 20) {
+    showToast('Please add more about your background, or upload your CV above.');
+    return;
+  }
+ 
   state.role       = role;
   state.industry   = document.getElementById('inp-industry').value;
   state.experience = document.getElementById('inp-exp').value;
   state.skills     = skills;
-
+ 
   goto('s-result');
   generateCoverLetter();
 }
-
-// ── COVER LETTER GENERATION — calls /api/generate-cover-letter ─────────────
+ 
+// ── COVER LETTER GENERATION ────────────────────────────────────────────────
 const statuses = [
   'Analysing your profile...',
   'Searching for matching roles...',
@@ -540,87 +673,99 @@ const statuses = [
   'Polishing the final draft...'
 ];
 let statusIdx = 0, statusTimer;
-
+ 
 async function generateCoverLetter() {
-  // Show loading
   document.getElementById('result-loading').style.display = 'block';
   document.getElementById('result-content').style.display = 'none';
   document.getElementById('result-error').style.display   = 'none';
-
-  // Animate status messages
+ 
   statusIdx = 0;
   document.getElementById('ai-status').textContent = statuses[0];
   statusTimer = setInterval(() => {
     statusIdx = Math.min(statusIdx + 1, statuses.length - 1);
     document.getElementById('ai-status').textContent = statuses[statusIdx];
   }, 2000);
-
+ 
   try {
-    // Build JSON payload
-    const payload = {
-      firstName:  state.first,
-      lastName:   state.last,
-      email:      state.email,
-      city:       state.city,
-      role:       state.role,
-      industry:   state.industry,
-      experience: state.experience,
-      skills:     state.skills,
-      plan:       state.plan
-    };
-
+    let body, headers;
+ 
+    if (state.cvFile) {
+      // Send as FormData so we can include the CV file
+      const fd = new FormData();
+      fd.append('cv', state.cvFile, state.cvFileName);
+      fd.append('firstName',  state.first);
+      fd.append('lastName',   state.last);
+      fd.append('email',      state.email);
+      fd.append('city',       state.city);
+      fd.append('role',       state.role);
+      fd.append('industry',   state.industry);
+      fd.append('experience', state.experience);
+      fd.append('skills',     state.skills);
+      fd.append('plan',       state.plan);
+      body = fd;
+      headers = {}; // Let browser set Content-Type with boundary
+    } else {
+      body = JSON.stringify({
+        firstName:  state.first,
+        lastName:   state.last,
+        email:      state.email,
+        city:       state.city,
+        role:       state.role,
+        industry:   state.industry,
+        experience: state.experience,
+        skills:     state.skills,
+        plan:       state.plan
+      });
+      headers = { 'Content-Type': 'application/json' };
+    }
+ 
     const res = await fetch('/api/generate-cover-letter', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
+      headers,
+      body
     });
-
+ 
     clearInterval(statusTimer);
-
+ 
     if (!res.ok) {
       const err = await res.json().catch(() => ({}));
       throw new Error(err.error || `Error ${res.status}`);
     }
-
+ 
     const data = await res.json();
-
     state.coverLetter = data.coverLetter || '';
     state.paymentId   = data.paymentId   || ('AFM-' + Date.now());
-
     showResult();
-
+ 
   } catch (err) {
     clearInterval(statusTimer);
-    console.error('[ApplyForMe] Generation failed:', err);
     document.getElementById('result-loading').style.display = 'none';
     document.getElementById('result-error').style.display   = 'block';
     document.getElementById('error-msg').textContent = err.message || 'Failed to generate cover letter. Please try again.';
   }
 }
-
+ 
 function retryGenerate() {
   document.getElementById('result-error').style.display = 'none';
   generateCoverLetter();
 }
-
+ 
 function showResult() {
   const isPro = state.plan === 'pro';
-
   document.getElementById('cover-letter-text').textContent = state.coverLetter;
   document.getElementById('app-count').textContent = isPro ? '25' : '10';
   document.getElementById('result-loading').style.display = 'none';
   document.getElementById('result-content').style.display = 'block';
-
-  // Update checkout summary
-  document.getElementById('checkout-sub').textContent = (isPro ? 'Pro' : 'Starter') + ' Plan — R' + (isPro ? '120' : '50') + ' once-off';
+ 
+  document.getElementById('checkout-sub').textContent  = (isPro ? 'Pro' : 'Starter') + ' Plan — R' + (isPro ? '120' : '50') + ' once-off';
   document.getElementById('sum-plan').textContent  = isPro ? 'Pro' : 'Starter';
   document.getElementById('sum-apps').textContent  = isPro ? '25 job applications' : '10 job applications';
   document.getElementById('sum-total').textContent = isPro ? 'R120.00' : 'R50.00';
   document.getElementById('pay-amount').textContent = isPro ? 'R120' : 'R50';
-
+ 
   showToast('✓ Cover letter ready!');
 }
-
+ 
 async function copyLetter() {
   if (!state.coverLetter) return;
   try {
@@ -630,17 +775,17 @@ async function copyLetter() {
     showToast('Please select and copy manually.');
   }
 }
-
-// ── PAYFAST CHECKOUT — calls /api/create-payment ───────────────────────────
+ 
+// ── PAYFAST CHECKOUT — FIXED ───────────────────────────────────────────────
 async function submitPayFast() {
   const btn = document.getElementById('pay-btn');
   const errBox = document.getElementById('pay-error');
-
+ 
   if (btn.disabled) return;
   btn.disabled = true;
   btn.innerHTML = '<span class="pay-spinner"></span> Preparing secure checkout…';
   errBox.style.display = 'none';
-
+ 
   try {
     const res = await fetch('/api/create-payment', {
       method: 'POST',
@@ -653,50 +798,47 @@ async function submitPayFast() {
         paymentId: state.paymentId
       })
     });
-
+ 
     if (!res.ok) {
       const err = await res.json().catch(() => ({}));
       throw new Error(err.error || `Payment error ${res.status}`);
     }
-
+ 
     const data = await res.json();
     const fields = data.fields;
-
-    // Populate the hidden form with server-signed fields
+ 
+    // Populate ONLY the signed fields — no extras
     document.getElementById('pf-form').action        = data.payfastUrl;
     document.getElementById('pf-merchant-id').value  = fields.merchant_id;
     document.getElementById('pf-merchant-key').value = fields.merchant_key;
     document.getElementById('pf-return-url').value   = fields.return_url;
     document.getElementById('pf-cancel-url').value   = fields.cancel_url;
-    document.getElementById('pf-notify-url').value   = fields.notify_url || '';
     document.getElementById('pf-first').value        = fields.name_first;
     document.getElementById('pf-last').value         = fields.name_last;
     document.getElementById('pf-email').value        = fields.email_address;
     document.getElementById('pf-payment-id').value   = fields.m_payment_id;
     document.getElementById('pf-amount').value       = fields.amount;
     document.getElementById('pf-item-name').value    = fields.item_name;
-    document.getElementById('pf-item-desc').value    = fields.item_description;
     document.getElementById('pf-signature').value    = fields.signature;
-
-    // Submit to PayFast
+ 
     document.getElementById('pf-form').submit();
-
+ 
   } catch (err) {
-    console.error('[ApplyForMe] Payment failed:', err);
     btn.disabled = false;
     btn.innerHTML = 'Pay <span id="pay-amount">' + (state.plan === 'pro' ? 'R120' : 'R50') + '</span> with PayFast →';
     errBox.textContent = '⚠️ ' + (err.message || 'Payment failed. Please try again.');
     errBox.style.display = 'block';
   }
 }
-
+ 
 // ── HANDLE PAYFAST RETURN ──────────────────────────────────────────────────
 const params = new URLSearchParams(window.location.search);
-if (params.get('payment') === 'success')    goto('s-thankyou');
-else if (params.get('payment') === 'cancelled') goto('s-cancelled');
-
+if (params.get('payment') === 'success')         goto('s-thankyou');
+else if (params.get('payment') === 'cancelled')  goto('s-cancelled');
+ 
 // ── INIT ───────────────────────────────────────────────────────────────────
 selectPlan('pro');
 </script>
 </body>
 </html>
+ 

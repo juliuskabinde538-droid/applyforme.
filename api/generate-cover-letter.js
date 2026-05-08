@@ -1,9 +1,3 @@
-/**
- * /api/generate-cover-letter.js
- * Vercel Serverless Function
- * Uses Google Gemini API (free tier) — no cost to run
- */
-
 const PLANS = {
   starter: { label: 'Starter', apps: 10 },
   pro:     { label: 'Pro',     apps: 25 },
@@ -20,7 +14,6 @@ export default async function handler(req, res) {
 
   try {
     const body = req.body || {};
-
     const firstName  = (body.firstName  || '').trim();
     const lastName   = (body.lastName   || '').trim();
     const email      = (body.email      || '').trim();
@@ -36,7 +29,7 @@ export default async function handler(req, res) {
     }
 
     const planInfo = PLANS[plan];
-    const apiKey   = process.env.GEMINI_API_KEY;
+    const apiKey   = process.env.GROQ_API_KEY;
 
     if (!apiKey) {
       return res.status(500).json({ error: 'AI service not configured. Please contact support.' });
@@ -63,28 +56,27 @@ Requirements:
 - Do NOT include a subject line, date, address, salutation, or sign-off
 - Return ONLY the cover letter text, no commentary or markdown`;
 
-    const geminiRes = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`,
-      {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          contents: [{ parts: [{ text: prompt }] }],
-          generationConfig: {
-            temperature: 0.8,
-            maxOutputTokens: 600,
-          },
-        }),
-      }
-    );
+    const groqRes = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${apiKey}`,
+      },
+      body: JSON.stringify({
+        model: 'llama-3.3-70b-versatile',
+        messages: [{ role: 'user', content: prompt }],
+        max_tokens: 600,
+        temperature: 0.8,
+      }),
+    });
 
-    if (!geminiRes.ok) {
-      const errData = await geminiRes.json().catch(() => ({}));
-      throw new Error(errData?.error?.message || `Gemini API error ${geminiRes.status}`);
+    if (!groqRes.ok) {
+      const errData = await groqRes.json().catch(() => ({}));
+      throw new Error(errData?.error?.message || `Groq API error ${groqRes.status}`);
     }
 
-    const geminiData = await geminiRes.json();
-    const coverLetter = geminiData?.candidates?.[0]?.content?.parts?.[0]?.text?.trim();
+    const groqData = await groqRes.json();
+    const coverLetter = groqData?.choices?.[0]?.message?.content?.trim();
 
     if (!coverLetter) {
       throw new Error('Empty response from AI');

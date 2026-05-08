@@ -12,8 +12,12 @@ const PLANS = {
 };
  
 function buildSignature(fields, passphrase) {
-  // PayFast signature: fields in declaration order, exclude merchant_key and signature
-  // URL-encode values using application/x-www-form-urlencoded encoding (spaces as +)
+  // PayFast signature rules:
+  // 1. Use fields in the order they are declared (NOT sorted alphabetically)
+  // 2. Exclude merchant_key and signature fields
+  // 3. Exclude empty/null/undefined values
+  // 4. URL-encode values (spaces as +)
+  // 5. Append passphrase at the end if set
   const excluded = new Set(['merchant_key', 'signature']);
  
   const str = Object.entries(fields)
@@ -57,13 +61,13 @@ export default async function handler(req, res) {
  
     const planInfo = PLANS[plan];
  
-    // Fields in exact PayFast-required order
-    // merchant_key is included in the POST but excluded from signature
+    // Fields declared in this exact order — order matters for signature
+    // merchant_key is included in the POST to PayFast but excluded from signature calculation
     const fields = {
       merchant_id:   merchantId,
       merchant_key:  merchantKey,
-      return_url:    `${baseUrl}/payment-success`,
-      cancel_url:    `${baseUrl}/payment-cancelled`,
+      return_url:    `${baseUrl}/payment-success?payment=success`,
+      cancel_url:    `${baseUrl}/payment-cancelled?payment=cancelled`,
       name_first:    firstName.trim(),
       name_last:     lastName.trim(),
       email_address: email.trim(),
@@ -72,7 +76,7 @@ export default async function handler(req, res) {
       item_name:     `ApplyForMe ${planInfo.label}`,
     };
  
-    // Signature is computed over all fields except merchant_key
+    // Compute signature (excludes merchant_key per PayFast spec)
     fields.signature = buildSignature(fields, passphrase || null);
  
     return res.status(200).json({
@@ -85,3 +89,4 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: 'Failed to create payment. Please try again.' });
   }
 }
+ 

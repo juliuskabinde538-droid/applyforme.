@@ -1,0 +1,15 @@
+{
+  "name": "applyforme",
+  "version": "1.0.0",
+  "private": true,
+  "description": "ApplyForMe — AI-powered job application service",
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {},
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel --prod"
+  }
+}

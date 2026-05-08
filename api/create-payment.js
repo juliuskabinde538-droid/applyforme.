@@ -6,8 +6,8 @@
 import crypto from 'crypto';
 
 const PLANS = {
-  starter: { label: 'Starter - 10 Job Applications', amount: '50.00' },
-  pro:     { label: 'Pro - 25 Job Applications',     amount: '120.00' },
+  starter: { label: 'Starter 10 Job Applications', amount: '50.00' },
+  pro:     { label: 'Pro 25 Job Applications',     amount: '120.00' },
 };
 
 export default async function handler(req, res) {
@@ -38,7 +38,7 @@ export default async function handler(req, res) {
 
     const planInfo = PLANS[plan];
 
-    // Fields for signature — merchant_key is NOT included
+    // Fields for signature — merchant_key is NOT included per PayFast spec
     const sigFields = [
       ['merchant_id',   merchantId],
       ['return_url',    `${baseUrl}/payment-success?payment=success`],
@@ -69,7 +69,6 @@ export default async function handler(req, res) {
     return res.status(200).json({
       payfastUrl: 'https://www.payfast.co.za/eng/process',
       fields,
-      _debug: { sigString, signature },
     });
 
   } catch (err) {

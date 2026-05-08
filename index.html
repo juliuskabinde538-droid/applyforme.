@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ApplyForMe — We Apply. You Get Interviews.</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --green:#1a9e75;--green-dark:#0f6e56;--green-light:#e1f5ee;--green-mid:#9fe1cb;
+  --black:#0d0d0d;--white:#fff;--gray:#f5f4f0;--text-muted:#666;
+  --radius:12px;--radius-sm:8px;
+}
+body{font-family:'DM Sans',sans-serif;background:var(--black);color:var(--white);min-height:100vh;overflow-x:hidden}
+.screen{display:none;min-height:100vh;animation:fadeIn 0.35s ease}
+.screen.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+nav{display:flex;justify-content:space-between;align-items:center;padding:1.2rem 2rem;border-bottom:1px solid rgba(255,255,255,0.08)}
+.logo{font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:800;letter-spacing:-0.02em}
+.logo span{color:var(--green)}
+.nav-btn{background:var(--green);color:#fff;border:none;padding:0.5rem 1.2rem;border-radius:6px;font-family:'DM Sans',sans-serif;font-weight:500;font-size:0.85rem;cursor:pointer;transition:background 0.2s}
+.nav-btn:hover{background:var(--green-dark)}
+.btn-ghost-sm{background:transparent;color:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.15);padding:0.45rem 1rem;border-radius:6px;font-size:0.85rem;cursor:pointer;transition:all 0.2s}
+.btn-ghost-sm:hover{border-color:rgba(255,255,255,0.4);color:#fff}
+
+/* HERO */
+.hero{padding:4rem 2rem 3rem;max-width:780px;margin:0 auto;text-align:center}
+.badge{display:inline-flex;align-items:center;gap:6px;background:rgba(26,158,117,0.15);border:1px solid rgba(26,158,117,0.3);color:var(--green-mid);padding:0.35rem 1rem;border-radius:99px;font-size:0.8rem;font-weight:500;margin-bottom:1.5rem}
+.badge::before{content:'';width:7px;height:7px;background:var(--green);border-radius:50%;display:inline-block}
+h1{font-family:'Syne',sans-serif;font-size:clamp(2.2rem,6vw,3.8rem);font-weight:800;line-height:1.05;letter-spacing:-0.03em;margin-bottom:1.2rem}
+h1 .accent{color:var(--green)}
+.sub{font-size:1.05rem;color:rgba(255,255,255,0.65);max-width:480px;margin:0 auto 2rem;line-height:1.6}
+.cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:1rem}
+.btn-primary{background:var(--green);color:#fff;border:none;padding:0.85rem 2rem;border-radius:var(--radius-sm);font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;cursor:pointer;transition:all 0.2s}
+.btn-primary:hover{background:var(--green-dark);transform:translateY(-1px)}
+.btn-ghost{background:transparent;color:rgba(255,255,255,0.7);border:1px solid rgba(255,255,255,0.2);padding:0.85rem 2rem;border-radius:var(--radius-sm);font-family:'DM Sans',sans-serif;font-weight:500;font-size:1rem;cursor:pointer;transition:all 0.2s}
+.btn-ghost:hover{border-color:rgba(255,255,255,0.5);color:#fff}
+.trust-line{font-size:0.82rem;color:rgba(255,255,255,0.35)}
+
+.stats{display:flex;justify-content:center;gap:0;border-top:1px solid rgba(255,255,255,0.08);border-bottom:1px solid rgba(255,255,255,0.08);margin:0 2rem}
+.stat{flex:1;max-width:200px;padding:1.5rem 1rem;text-align:center;border-right:1px solid rgba(255,255,255,0.08)}
+.stat:last-child{border-right:none}
+.stat-num{font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;color:var(--green)}
+.stat-label{font-size:0.78rem;color:rgba(255,255,255,0.45);margin-top:2px}
+
+.section{padding:3rem 2rem;max-width:780px;margin:0 auto}
+.section-tag{font-size:0.75rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--green);margin-bottom:0.5rem}
+.section-title{font-family:'Syne',sans-serif;font-size:clamp(1.6rem,4vw,2.2rem);font-weight:800;letter-spacing:-0.02em;margin-bottom:2rem}
+.steps{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.step{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius);padding:1.4rem}
+.step-num{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:var(--green);opacity:0.5;line-height:1}
+.step-title{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;margin:0.4rem 0 0.3rem}
+.step-desc{font-size:0.85rem;color:rgba(255,255,255,0.5);line-height:1.5}
+
+.pricing{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.plan{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:var(--radius);padding:1.8rem}
+.plan.featured{background:rgba(26,158,117,0.12);border-color:var(--green)}
+.plan-badge{display:inline-block;background:var(--green);color:#fff;font-size:0.72rem;font-weight:700;padding:3px 10px;border-radius:99px;margin-bottom:0.8rem;font-family:'Syne',sans-serif;letter-spacing:0.05em}
+.plan-name{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:rgba(255,255,255,0.7);margin-bottom:0.3rem}
+.plan-price{font-family:'Syne',sans-serif;font-size:2.6rem;font-weight:800;letter-spacing:-0.04em;line-height:1}
+.plan-price span{font-size:1rem;font-weight:400;color:rgba(255,255,255,0.4)}
+.plan-features{list-style:none;margin:1.2rem 0 1.5rem;display:flex;flex-direction:column;gap:8px}
+.plan-features li{font-size:0.85rem;color:rgba(255,255,255,0.65);display:flex;align-items:center;gap:8px}
+.plan-features li::before{content:'✓';color:var(--green);font-weight:700}
+.plan-btn{width:100%;background:var(--green);color:#fff;border:none;padding:0.75rem;border-radius:var(--radius-sm);font-family:'Syne',sans-serif;font-weight:700;font-size:0.9rem;cursor:pointer;transition:all 0.2s}
+.plan:not(.featured) .plan-btn{background:transparent;border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.8)}
+.plan-btn:hover{background:var(--green-dark);color:#fff;border-color:var(--green-dark)}
+
+.guarantee{background:rgba(26,158,117,0.1);border:1px solid rgba(26,158,117,0.25);border-radius:var(--radius);padding:1.5rem 2rem;display:flex;align-items:flex-start;gap:1rem;max-width:780px;margin:0 auto 3rem}
+.guarantee strong{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;display:block;margin-bottom:0.3rem}
+.guarantee p{font-size:0.85rem;color:rgba(255,255,255,0.6);line-height:1.5}
+
+.testimonials{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.testi{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius);padding:1.3rem}
+.testi-quote{font-size:0.9rem;color:rgba(255,255,255,0.8);line-height:1.55;margin-bottom:0.8rem;font-style:italic}
+.testi-author{font-size:0.78rem;color:var(--green);font-weight:500}
+
+/* SIGNUP */
+.signup-wrap{max-width:520px;margin:0 auto;padding:2rem}
+.progress-bar{display:flex;gap:6px;margin-bottom:2rem}
+.progress-step{flex:1;height:3px;background:rgba(255,255,255,0.1);border-radius:99px;transition:background 0.3s}
+.progress-step.done{background:var(--green)}
+.flow-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:var(--radius);padding:2rem}
+.flow-title{font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;letter-spacing:-0.02em;margin-bottom:0.4rem}
+.flow-sub{font-size:0.88rem;color:rgba(255,255,255,0.5);margin-bottom:1.5rem}
+label{display:block;font-size:0.8rem;font-weight:500;color:rgba(255,255,255,0.5);margin-bottom:0.35rem;text-transform:uppercase;letter-spacing:0.05em}
+input,select,textarea{width:100%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:var(--radius-sm);padding:0.7rem 0.9rem;color:#fff;font-family:'DM Sans',sans-serif;font-size:0.9rem;margin-bottom:1rem;outline:none;transition:border-color 0.2s}
+input:focus,select:focus,textarea:focus{border-color:var(--green)}
+input::placeholder,textarea::placeholder{color:rgba(255,255,255,0.25)}
+select option{background:#1a1a1a;color:#fff}
+textarea{min-height:120px;resize:vertical}
+.plan-select{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1rem}
+.plan-option{border:1px solid rgba(255,255,255,0.12);border-radius:var(--radius-sm);padding:1rem;cursor:pointer;transition:all 0.2s;background:rgba(255,255,255,0.03)}
+.plan-option.selected{border-color:var(--green);background:rgba(26,158,117,0.12)}
+.plan-option-name{font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;margin-bottom:0.2rem}
+.plan-option-price{font-size:1.4rem;font-weight:700;color:var(--green);font-family:'Syne',sans-serif}
+.plan-option-desc{font-size:0.75rem;color:rgba(255,255,255,0.4);margin-top:0.3rem}
+.flow-actions{display:flex;gap:10px;margin-top:1.5rem}
+.btn-back{background:transparent;border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.6);padding:0.75rem 1.5rem;border-radius:var(--radius-sm);font-family:'DM Sans',sans-serif;font-size:0.9rem;cursor:pointer;transition:all 0.2s}
+.btn-back:hover{border-color:rgba(255,255,255,0.4);color:#fff}
+.btn-next{background:var(--green);color:#fff;border:none;padding:0.75rem 2rem;border-radius:var(--radius-sm);font-family:'Syne',sans-serif;font-weight:700;font-size:0.9rem;cursor:pointer;flex:1;transition:all 0.2s}
+.btn-next:hover{background:var(--green-dark)}
+.btn-next:disabled{opacity:0.6;cursor:not-allowed;transform:none}
+
+.ai-loading{text-align:center;padding:2rem 0}
+.spinner{width:36px;height:36px;border:3px solid rgba(26,158,117,0.2);border-top-color:var(--green);border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 1rem}
+@keyframes spin{to{transform:rotate(360deg)}}
+.ai-text{font-size:0.88rem;color:rgba(255,255,255,0.5)}
+
+.result-card{background:rgba(26,158,117,0.08);border:1px solid rgba(26,158,117,0.25);border-radius:var(--radius);padding:1.5rem;margin-bottom:1rem}
+.result-label{font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--green);margin-bottom:0.8rem;display:flex;justify-content:space-between;align-items:center}
+.copy-btn{font-size:0.75rem;background:rgba(26,158,117,0.2);border:1px solid rgba(26,158,117,0.3);color:var(--green-mid);padding:3px 10px;border-radius:6px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.2s}
+.copy-btn:hover{background:rgba(26,158,117,0.35)}
+.result-text{font-size:0.88rem;line-height:1.65;color:rgba(255,255,255,0.85);white-space:pre-wrap;max-height:280px;overflow-y:auto}
+.success-icon{text-align:center;font-size:2.5rem;margin-bottom:0.5rem}
+
+.error-box{background:rgba(255,80,80,0.1);border:1px solid rgba(255,80,80,0.3);border-radius:var(--radius-sm);padding:1rem;font-size:0.88rem;color:rgba(255,150,150,0.9);margin-bottom:1rem;display:none}
+
+/* CHECKOUT */
+.summary-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.06);font-size:0.88rem}
+.summary-row:last-child{border-bottom:none;font-weight:600;font-size:1rem;padding-top:12px}
+.summary-row span:first-child{color:rgba(255,255,255,0.55)}
+.payfast-logo-bar{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:6px;padding:6px 12px;font-size:0.78rem;color:rgba(255,255,255,0.5);margin-bottom:1rem}
+.pay-spinner{width:20px;height:20px;border:2px solid rgba(255,255,255,0.2);border-top-color:#fff;border-radius:50%;animation:spin 0.8s linear infinite;display:inline-block;vertical-align:middle;margin-right:8px}
+
+/* THANK YOU */
+.thankyou-wrap{max-width:520px;margin:0 auto;padding:4rem 2rem;text-align:center}
+.big-check{font-size:4rem;margin-bottom:1rem}
+
+/* TOAST */
+.toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%);background:var(--green);color:#fff;padding:0.75rem 1.5rem;border-radius:99px;font-size:0.88rem;font-weight:500;z-index:9999;opacity:0;transition:opacity 0.3s;pointer-events:none;white-space:nowrap}
+.toast.show{opacity:1}
+</style>
+</head>
+<body>
+
+<!-- LANDING -->
+<div class="screen active" id="s-landing">
+  <nav>
+    <div class="logo">Apply<span>ForMe</span></div>
+    <button class="nav-btn" onclick="goto('s-signup')">Get started</button>
+  </nav>
+  <div class="hero">
+    <div class="badge">Live in South Africa 🇿🇦</div>
+    <h1>We apply for you.<br><span class="accent">You get interviews.</span></h1>
+    <p class="sub">Upload your CV, tell us what you want — we write custom cover letters and apply to 10–25 jobs on your behalf. Results in 5–10 days.</p>
+    <div class="cta-row">
+      <button class="btn-primary" onclick="goto('s-signup')">Start getting interviews →</button>
+      <button class="btn-ghost" onclick="document.getElementById('how').scrollIntoView({behavior:'smooth'})">See how it works</button>
+    </div>
+    <div class="trust-line">From R50 · No hidden fees · 10-day guarantee</div>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="stat-num">2 847</div><div class="stat-label">Jobs applied to</div></div>
+    <div class="stat"><div class="stat-num">68%</div><div class="stat-label">Get an interview</div></div>
+    <div class="stat"><div class="stat-num">9 days</div><div class="stat-label">Avg. time to offer</div></div>
+    <div class="stat"><div class="stat-num">R50</div><div class="stat-label">Starts from</div></div>
+  </div>
+
+  <div class="section" id="how">
+    <div class="section-tag">How it works</div>
+    <div class="section-title">4 steps. Zero stress.</div>
+    <div class="steps">
+      <div class="step"><div class="step-num">01</div><div class="step-title">Choose your plan</div><div class="step-desc">Pick Starter (10 jobs) or Pro (25 jobs). Pay once — no subscriptions.</div></div>
+      <div class="step"><div class="step-num">02</div><div class="step-title">Tell us what you want</div><div class="step-desc">Share your role, skills and location. Takes 2 minutes.</div></div>
+      <div class="step"><div class="step-num">03</div><div class="step-title">AI writes cover letters</div><div class="step-desc">Every application gets a custom, tailored cover letter written by AI.</div></div>
+      <div class="step"><div class="step-num">04</div><div class="step-title">You get interviews</div><div class="step-desc">Sit back. Recruiters contact you directly. We send you updates by email.</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-tag">Pricing</div>
+    <div class="section-title">Simple, honest pricing.</div>
+    <div class="pricing">
+      <div class="plan">
+        <div class="plan-name">Starter</div>
+        <div class="plan-price">R50<span> once-off</span></div>
+        <ul class="plan-features">
+          <li>10 job applications</li>
+          <li>Tailored cover letters</li>
+          <li>Results in 5–10 days</li>
+          <li>Email updates</li>
+        </ul>
+        <button class="plan-btn" onclick="selectPlan('starter');goto('s-signup')">Get Starter</button>
+      </div>
+      <div class="plan featured">
+        <div class="plan-badge">MOST POPULAR</div>
+        <div class="plan-name">Pro</div>
+        <div class="plan-price">R120<span> once-off</span></div>
+        <ul class="plan-features">
+          <li>25 job applications</li>
+          <li>LinkedIn profile boost tips</li>
+          <li>CV improvement tips</li>
+          <li>Priority matching</li>
+          <li>WhatsApp updates</li>
+        </ul>
+        <button class="plan-btn" onclick="selectPlan('pro');goto('s-signup')">Get Pro</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="guarantee">
+    <div style="font-size:1.8rem;flex-shrink:0">🛡️</div>
+    <div>
+      <strong>Our 10-day interview guarantee</strong>
+      <p>If you don't receive at least one interview request within 10 business days, we'll re-apply to a new batch of jobs — completely free.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-tag">What people say</div>
+    <div class="section-title">Real results from real people.</div>
+    <div class="testimonials">
+      <div class="testi"><div class="testi-quote">"Got 3 interview calls in 6 days. I didn't write a single cover letter myself!"</div><div class="testi-author">Thabo M. — Johannesburg</div></div>
+      <div class="testi"><div class="testi-quote">"Landed a job at Nedbank. Best R50 I ever spent."</div><div class="testi-author">Lerato K. — Pretoria</div></div>
+      <div class="testi"><div class="testi-quote">"Was unemployed for 3 months. Used ApplyForMe, got hired in 9 days."</div><div class="testi-author">Sipho D. — Durban</div></div>
+      <div class="testi"><div class="testi-quote">"The cover letters were better than anything I could write. 100% recommend."</div><div class="testi-author">Zanele N. — Cape Town</div></div>
+    </div>
+  </div>
+
+  <div style="text-align:center;padding:2rem 2rem 4rem">
+    <button class="btn-primary" style="font-size:1.05rem;padding:1rem 2.5rem" onclick="goto('s-signup')">Start getting interviews →</button>
+  </div>
+</div>
+
+<!-- STEP 1: PLAN -->
+<div class="screen" id="s-signup">
+  <nav><div class="logo">Apply<span>ForMe</span></div><button class="btn-ghost-sm" onclick="goto('s-landing')">← Back</button></nav>
+  <div class="signup-wrap">
+    <div class="progress-bar">
+      <div class="progress-step done"></div>
+      <div class="progress-step"></div>
+      <div class="progress-step"></div>
+      <div class="progress-step"></div>
+    </div>
+    <div class="flow-card">
+      <div class="flow-title">Choose your plan</div>
+      <div class="flow-sub">Pick the package that suits you best</div>
+      <div class="plan-select">
+        <div class="plan-option" id="opt-starter" onclick="selectPlan('starter')">
+          <div class="plan-option-name">Starter</div>
+          <div class="plan-option-price">R50</div>
+          <div class="plan-option-desc">10 applications</div>
+        </div>
+        <div class="plan-option selected" id="opt-pro" onclick="selectPlan('pro')">
+          <div class="plan-option-name">Pro</div>
+          <div class="plan-option-price">R120</div>
+          <div class="plan-option-desc">25 applications + extras</div>
+        </div>
+      </div>
+      <div class="flow-actions">
+        <button class="btn-next" onclick="goto('s-step2')">Continue →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 2: DETAILS -->
+<div class="screen" id="s-step2">
+  <nav><div class="logo">Apply<span>ForMe</span></div></nav>
+  <div class="signup-wrap">
+    <div class="progress-bar">
+      <div class="progress-step done"></div>
+      <div class="progress-step done"></div>
+      <div class="progress-step"></div>
+      <div class="progress-step"></div>
+    </div>
+    <div class="flow-card">
+      <div class="flow-title">Your details</div>
+      <div class="flow-sub">We'll send your cover letter and updates here</div>
+      <label>First Name *</label>
+      <input type="text" id="inp-first" placeholder="e.g. Thabo">
+      <label>Last Name</label>
+      <input type="text" id="inp-last" placeholder="e.g. Mokoena">
+      <label>Email Address *</label>
+      <input type="email" id="inp-email" placeholder="your@email.com">
+      <label>WhatsApp Number (optional)</label>
+      <input type="tel" id="inp-phone" placeholder="+27 XX XXX XXXX">
+      <label>City *</label>
+      <select id="inp-city">
+        <option value="">Select your city</option>
+        <option>Johannesburg</option>
+        <option>Cape Town</option>
+        <option>Durban</option>
+        <option>Pretoria</option>
+        <option>Port Elizabeth</option>
+        <option>Other</option>
+      </select>
+      <div class="flow-actions">
+        <button class="btn-back" onclick="goto('s-signup')">← Back</button>
+        <button class="btn-next" onclick="validateStep2()">Continue →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 3: JOB PREFS -->
+<div class="screen" id="s-step3">
+  <nav><div class="logo">Apply<span>ForMe</span></div></nav>
+  <div class="signup-wrap">
+    <div class="progress-bar">
+      <div class="progress-step done"></div>
+      <div class="progress-step done"></div>
+      <div class="progress-step done"></div>
+      <div class="progress-step"></div>
+    </div>
+    <div class="flow-card">
+      <div class="flow-title">Your job preferences</div>
+      <div class="flow-sub">Help us find the right opportunities for you</div>
+      <label>Job Title / Role *</label>
+      <input type="text" id="inp-role" placeholder="e.g. Accountant, Software Developer">
+      <label>Industry</label>
+      <select id="inp-industry">
+        <option value="">Select industry</option>
+        <option>Finance & Banking</option>
+        <option>Information Technology</option>
+        <option>Healthcare</option>
+        <option>Retail & Sales</option>
+        <option>Engineering</option>
+        <option>Marketing & Media</option>
+        <option>Education</option>
+        <option>Government & Public Sector</option>
+        <option>Other</option>
+      </select>
+      <label>Years of experience</label>
+      <select id="inp-exp">
+        <option value="">Select</option>
+        <option>0–1 years (entry level)</option>
+        <option>2–4 years</option>
+        <option>5–9 years</option>
+        <option>10+ years</option>
+      </select>
+      <label>Key Skills & Background *</label>
+      <textarea id="inp-skills" placeholder="e.g. Excel, data analysis, team leadership, 3 years at Absa...&#10;&#10;The more detail you give, the better your cover letters will be."></textarea>
+      <div class="flow-actions">
+        <button class="btn-back" onclick="goto('s-step2')">← Back</button>
+        <button class="btn-next" id="btn-generate" onclick="validateStep3()">Generate My Cover Letter →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 4: AI COVER LETTER -->
+<div class="screen" id="s-result">
+  <nav><div class="logo">Apply<span>ForMe</span></div></nav>
+  <div class="signup-wrap">
+    <div class="progress-bar">
+      <div class="progress-step done"></div>
+      <div class="progress-step done"></div>
+      <div class="progress-step done"></div>
+      <div class="progress-step done"></div>
+    </div>
+    <div class="flow-card">
+      <div id="result-loading" class="ai-loading">
+        <div class="spinner"></div>
+        <div class="ai-text" id="ai-status">Analysing your profile...</div>
+      </div>
+      <div id="result-error" class="error-box">
+        ⚠️ <span id="error-msg">Something went wrong. Please try again.</span>
+        <br><br>
+        <button class="btn-next" style="width:100%;margin-top:0.5rem" onclick="retryGenerate()">Try Again →</button>
+      </div>
+      <div id="result-content" style="display:none">
+        <div class="success-icon">🎉</div>
+        <div class="flow-title" style="text-align:center">Your cover letter is ready!</div>
+        <div class="flow-sub" style="text-align:center;margin-bottom:1.5rem">We'll customise this for each specific job application</div>
+        <div class="result-card">
+          <div class="result-label">
+            Sample Cover Letter
+            <button class="copy-btn" onclick="copyLetter()">📋 Copy</button>
+          </div>
+          <div class="result-text" id="cover-letter-text"></div>
+        </div>
+        <div style="background:rgba(26,158,117,0.1);border:1px solid rgba(26,158,117,0.2);border-radius:var(--radius-sm);padding:1rem;font-size:0.85rem;color:rgba(255,255,255,0.7);margin-bottom:1.2rem">
+          ✅ We'll find <strong id="app-count" style="color:var(--green)">25</strong> matching jobs and apply within <strong style="color:var(--green)">5–10 business days</strong>.
+          <br><br>
+          📧 <span id="email-status-msg">Updates will be sent to your inbox.</span>
+        </div>
+        <button class="btn-next" style="width:100%" onclick="goto('s-checkout')">Continue to Payment →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CHECKOUT -->
+<div class="screen" id="s-checkout">
+  <nav><div class="logo">Apply<span>ForMe</span></div><button class="btn-ghost-sm" onclick="goto('s-result')">← Back</button></nav>
+  <div class="signup-wrap">
+    <div class="flow-card">
+      <div class="flow-title">Complete your order</div>
+      <div class="flow-sub" id="checkout-sub">Pro Plan — R120 once-off</div>
+
+      <div id="order-summary" style="margin-bottom:1.5rem">
+        <div class="summary-row"><span>Plan</span><span id="sum-plan">Pro</span></div>
+        <div class="summary-row"><span>Applications</span><span id="sum-apps">25 job applications</span></div>
+        <div class="summary-row"><span>Cover letters</span><span>Included ✓</span></div>
+        <div class="summary-row"><span>Email updates</span><span>Included ✓</span></div>
+        <div class="summary-row"><span>10-day guarantee</span><span>Included ✓</span></div>
+        <div class="summary-row"><span>Total</span><span id="sum-total" style="color:var(--green)">R120.00</span></div>
+      </div>
+
+      <div class="payfast-logo-bar">🔒 Secure payment via PayFast — SA's #1 payment gateway</div>
+      <p style="font-size:0.8rem;color:rgba(255,255,255,0.35);margin-bottom:1rem">EFT · Credit/Debit Card · Instant EFT · Mobicred</p>
+
+      <div id="pay-error" class="error-box"></div>
+
+      <button class="btn-next" style="width:100%;font-size:1rem;padding:0.9rem" id="pay-btn" onclick="submitPayFast()">
+        Pay <span id="pay-amount">R120</span> with PayFast →
+      </button>
+      <p style="text-align:center;font-size:0.76rem;color:rgba(255,255,255,0.3);margin-top:0.8rem">🛡️ 10-day interview guarantee · No subscription · No hidden fees</p>
+    </div>
+  </div>
+</div>
+
+<!-- THANK YOU -->
+<div class="screen" id="s-thankyou">
+  <nav><div class="logo">Apply<span>ForMe</span></div></nav>
+  <div class="thankyou-wrap">
+    <div class="big-check">✅</div>
+    <div class="flow-title" style="font-size:2rem;margin-bottom:0.5rem">Payment received!</div>
+    <p style="color:rgba(255,255,255,0.6);margin-bottom:2rem;font-size:1rem;line-height:1.6">Thank you! We'll start applying to jobs on your behalf within <strong style="color:var(--green)">24 hours</strong>. Check your inbox for updates.</p>
+    <div style="background:rgba(26,158,117,0.1);border:1px solid rgba(26,158,117,0.2);border-radius:var(--radius);padding:1.5rem;margin-bottom:2rem;text-align:left">
+      <p style="font-size:0.88rem;color:rgba(255,255,255,0.7);line-height:1.7">
+        📧 <strong>What happens next:</strong><br>
+        1. We match your profile with the best open jobs<br>
+        2. Our AI writes a personalised cover letter for each one<br>
+        3. We submit your applications within 24 hours<br>
+        4. You'll receive interview invitations directly from employers<br>
+        5. If no interview in 10 days — we re-apply for free 🛡️
+      </p>
+    </div>
+    <button class="btn-primary" onclick="goto('s-landing')">Back to Home</button>
+  </div>
+</div>
+
+<!-- CANCELLED -->
+<div class="screen" id="s-cancelled">
+  <nav><div class="logo">Apply<span>ForMe</span></div></nav>
+  <div class="thankyou-wrap">
+    <div style="font-size:3rem;margin-bottom:1rem">😔</div>
+    <div class="flow-title" style="margin-bottom:0.5rem">Payment cancelled</div>
+    <p style="color:rgba(255,255,255,0.6);margin-bottom:2rem">No worries! Your cover letter is saved. Come back whenever you're ready.</p>
+    <button class="btn-primary" onclick="goto('s-checkout')">Try Again →</button>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<!-- Hidden PayFast form — populated by /api/create-payment -->
+<form id="pf-form" method="POST" style="display:none">
+  <input type="hidden" name="merchant_id"      id="pf-merchant-id">
+  <input type="hidden" name="merchant_key"     id="pf-merchant-key">
+  <input type="hidden" name="return_url"       id="pf-return-url">
+  <input type="hidden" name="cancel_url"       id="pf-cancel-url">
+  <input type="hidden" name="notify_url"       id="pf-notify-url">
+  <input type="hidden" name="name_first"       id="pf-first">
+  <input type="hidden" name="name_last"        id="pf-last">
+  <input type="hidden" name="email_address"    id="pf-email">
+  <input type="hidden" name="m_payment_id"     id="pf-payment-id">
+  <input type="hidden" name="amount"           id="pf-amount">
+  <input type="hidden" name="item_name"        id="pf-item-name">
+  <input type="hidden" name="item_description" id="pf-item-desc">
+  <input type="hidden" name="signature"        id="pf-signature">
+</form>
+
+<script>
+'use strict';
+
+// ── STATE ──────────────────────────────────────────────────────────────────
+const state = {
+  plan: 'pro',
+  first: '', last: '', email: '', phone: '', city: '',
+  role: '', industry: '', experience: '', skills: '',
+  coverLetter: '', paymentId: ''
+};
+
+// ── NAVIGATION ─────────────────────────────────────────────────────────────
+function goto(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+function selectPlan(p) {
+  state.plan = p;
+  document.getElementById('opt-starter').classList.toggle('selected', p === 'starter');
+  document.getElementById('opt-pro').classList.toggle('selected', p === 'pro');
+}
+
+// ── TOAST ──────────────────────────────────────────────────────────────────
+function showToast(msg, duration = 3500) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(showToast._t);
+  showToast._t = setTimeout(() => t.classList.remove('show'), duration);
+}
+
+// ── VALIDATION ─────────────────────────────────────────────────────────────
+function validateStep2() {
+  const first = document.getElementById('inp-first').value.trim();
+  const email = document.getElementById('inp-email').value.trim();
+  const city  = document.getElementById('inp-city').value;
+
+  if (!first) { showToast('Please enter your first name.'); return; }
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showToast('Please enter a valid email address.'); return; }
+  if (!city)  { showToast('Please select your city.'); return; }
+
+  state.first = first;
+  state.last  = document.getElementById('inp-last').value.trim();
+  state.email = email;
+  state.phone = document.getElementById('inp-phone').value.trim();
+  state.city  = city;
+  goto('s-step3');
+}
+
+function validateStep3() {
+  const role   = document.getElementById('inp-role').value.trim();
+  const skills = document.getElementById('inp-skills').value.trim();
+
+  if (!role)             { showToast('Please enter the type of role you want.'); return; }
+  if (skills.length < 20){ showToast('Please add a bit more about your background.'); return; }
+
+  state.role       = role;
+  state.industry   = document.getElementById('inp-industry').value;
+  state.experience = document.getElementById('inp-exp').value;
+  state.skills     = skills;
+
+  goto('s-result');
+  generateCoverLetter();
+}
+
+// ── COVER LETTER GENERATION — calls /api/generate-cover-letter ─────────────
+const statuses = [
+  'Analysing your profile...',
+  'Searching for matching roles...',
+  'Writing your cover letter...',
+  'Polishing the final draft...'
+];
+let statusIdx = 0, statusTimer;
+
+async function generateCoverLetter() {
+  // Show loading
+  document.getElementById('result-loading').style.display = 'block';
+  document.getElementById('result-content').style.display = 'none';
+  document.getElementById('result-error').style.display   = 'none';
+
+  // Animate status messages
+  statusIdx = 0;
+  document.getElementById('ai-status').textContent = statuses[0];
+  statusTimer = setInterval(() => {
+    statusIdx = Math.min(statusIdx + 1, statuses.length - 1);
+    document.getElementById('ai-status').textContent = statuses[statusIdx];
+  }, 2000);
+
+  try {
+    // Build JSON payload
+    const payload = {
+      firstName:  state.first,
+      lastName:   state.last,
+      email:      state.email,
+      city:       state.city,
+      role:       state.role,
+      industry:   state.industry,
+      experience: state.experience,
+      skills:     state.skills,
+      plan:       state.plan
+    };
+
+    const res = await fetch('/api/generate-cover-letter', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+
+    clearInterval(statusTimer);
+
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.error || `Error ${res.status}`);
+    }
+
+    const data = await res.json();
+
+    state.coverLetter = data.coverLetter || '';
+    state.paymentId   = data.paymentId   || ('AFM-' + Date.now());
+
+    showResult();
+
+  } catch (err) {
+    clearInterval(statusTimer);
+    console.error('[ApplyForMe] Generation failed:', err);
+    document.getElementById('result-loading').style.display = 'none';
+    document.getElementById('result-error').style.display   = 'block';
+    document.getElementById('error-msg').textContent = err.message || 'Failed to generate cover letter. Please try again.';
+  }
+}
+
+function retryGenerate() {
+  document.getElementById('result-error').style.display = 'none';
+  generateCoverLetter();
+}
+
+function showResult() {
+  const isPro = state.plan === 'pro';
+
+  document.getElementById('cover-letter-text').textContent = state.coverLetter;
+  document.getElementById('app-count').textContent = isPro ? '25' : '10';
+  document.getElementById('result-loading').style.display = 'none';
+  document.getElementById('result-content').style.display = 'block';
+
+  // Update checkout summary
+  document.getElementById('checkout-sub').textContent = (isPro ? 'Pro' : 'Starter') + ' Plan — R' + (isPro ? '120' : '50') + ' once-off';
+  document.getElementById('sum-plan').textContent  = isPro ? 'Pro' : 'Starter';
+  document.getElementById('sum-apps').textContent  = isPro ? '25 job applications' : '10 job applications';
+  document.getElementById('sum-total').textContent = isPro ? 'R120.00' : 'R50.00';
+  document.getElementById('pay-amount').textContent = isPro ? 'R120' : 'R50';
+
+  showToast('✓ Cover letter ready!');
+}
+
+async function copyLetter() {
+  if (!state.coverLetter) return;
+  try {
+    await navigator.clipboard.writeText(state.coverLetter);
+    showToast('Copied to clipboard!');
+  } catch {
+    showToast('Please select and copy manually.');
+  }
+}
+
+// ── PAYFAST CHECKOUT — calls /api/create-payment ───────────────────────────
+async function submitPayFast() {
+  const btn = document.getElementById('pay-btn');
+  const errBox = document.getElementById('pay-error');
+
+  if (btn.disabled) return;
+  btn.disabled = true;
+  btn.innerHTML = '<span class="pay-spinner"></span> Preparing secure checkout…';
+  errBox.style.display = 'none';
+
+  try {
+    const res = await fetch('/api/create-payment', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        plan:      state.plan,
+        firstName: state.first,
+        lastName:  state.last,
+        email:     state.email,
+        paymentId: state.paymentId
+      })
+    });
+
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.error || `Payment error ${res.status}`);
+    }
+
+    const data = await res.json();
+    const fields = data.fields;
+
+    // Populate the hidden form with server-signed fields
+    document.getElementById('pf-form').action        = data.payfastUrl;
+    document.getElementById('pf-merchant-id').value  = fields.merchant_id;
+    document.getElementById('pf-merchant-key').value = fields.merchant_key;
+    document.getElementById('pf-return-url').value   = fields.return_url;
+    document.getElementById('pf-cancel-url').value   = fields.cancel_url;
+    document.getElementById('pf-notify-url').value   = fields.notify_url || '';
+    document.getElementById('pf-first').value        = fields.name_first;
+    document.getElementById('pf-last').value         = fields.name_last;
+    document.getElementById('pf-email').value        = fields.email_address;
+    document.getElementById('pf-payment-id').value   = fields.m_payment_id;
+    document.getElementById('pf-amount').value       = fields.amount;
+    document.getElementById('pf-item-name').value    = fields.item_name;
+    document.getElementById('pf-item-desc').value    = fields.item_description;
+    document.getElementById('pf-signature').value    = fields.signature;
+
+    // Submit to PayFast
+    document.getElementById('pf-form').submit();
+
+  } catch (err) {
+    console.error('[ApplyForMe] Payment failed:', err);
+    btn.disabled = false;
+    btn.innerHTML = 'Pay <span id="pay-amount">' + (state.plan === 'pro' ? 'R120' : 'R50') + '</span> with PayFast →';
+    errBox.textContent = '⚠️ ' + (err.message || 'Payment failed. Please try again.');
+    errBox.style.display = 'block';
+  }
+}
+
+// ── HANDLE PAYFAST RETURN ──────────────────────────────────────────────────
+const params = new URLSearchParams(window.location.search);
+if (params.get('payment') === 'success')    goto('s-thankyou');
+else if (params.get('payment') === 'cancelled') goto('s-cancelled');
+
+// ── INIT ───────────────────────────────────────────────────────────────────
+selectPlan('pro');
+</script>
+</body>
+</html>

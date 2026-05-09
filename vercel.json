@@ -3,6 +3,7 @@
   "buildCommand": "npm install",
   "outputDirectory": ".",
   "rewrites": [
+    { "source": "/sitemap.xml",       "destination": "/api/sitemap" },
     { "source": "/payment-success",   "destination": "/index.html" },
     { "source": "/payment-cancelled", "destination": "/index.html" }
   ],
@@ -13,19 +14,6 @@
         { "key": "Access-Control-Allow-Origin",  "value": "*" },
         { "key": "Access-Control-Allow-Methods", "value": "POST, OPTIONS" },
         { "key": "Access-Control-Allow-Headers", "value": "Content-Type" }
-      ]
-    },
-    {
-      "source": "/sitemap.xml",
-      "headers": [
-        { "key": "Content-Type", "value": "application/xml; charset=utf-8" },
-        { "key": "X-Content-Type-Options", "value": "nosniff" }
-      ]
-    },
-    {
-      "source": "/robots.txt",
-      "headers": [
-        { "key": "Content-Type", "value": "text/plain" }
       ]
     }
   ]

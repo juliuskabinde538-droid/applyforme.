@@ -38,9 +38,10 @@ export default async function handler(req, res) {
 
     const planInfo = PLANS[plan];
 
-    // Fields for signature — merchant_key is NOT included per PayFast spec
-    const sigFields = [
+    // CORRECT PayFast field order — merchant_key IS included in signature
+    const fields = [
       ['merchant_id',   merchantId],
+      ['merchant_key',  merchantKey],
       ['return_url',    `${baseUrl}/payment-success?payment=success`],
       ['cancel_url',    `${baseUrl}/payment-cancelled?payment=cancelled`],
       ['name_first',    firstName.trim()],
@@ -51,8 +52,8 @@ export default async function handler(req, res) {
       ['item_name',     `ApplyForMe ${planInfo.label}`],
     ];
 
-    // Build signature string — skip empty values
-    const sigString = sigFields
+    // Build signature string — skip empty values, no passphrase (none set in PayFast)
+    const sigString = fields
       .filter(([, v]) => v !== '' && v !== null && v !== undefined)
       .map(([k, v]) => `${k}=${encodeURIComponent(String(v)).replace(/%20/g, '+')}`)
       .join('&');
@@ -62,13 +63,12 @@ export default async function handler(req, res) {
     console.log('[PayFast] sigString:', sigString);
     console.log('[PayFast] signature:', signature);
 
-    const fields = Object.fromEntries(sigFields);
-    fields.merchant_key = merchantKey;
-    fields.signature    = signature;
+    const formFields = Object.fromEntries(fields);
+    formFields.signature = signature;
 
     return res.status(200).json({
       payfastUrl: 'https://www.payfast.co.za/eng/process',
-      fields,
+      fields: formFields,
     });
 
   } catch (err) {
